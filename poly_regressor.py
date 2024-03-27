@@ -7,9 +7,10 @@ class Polynomial_Regressor:
     def __init__(self, order):
         self.order = order
         self.weightInitialized = False
+        self.modelName = ""
 
     def name(self, name):
-        self.name = name
+        self.modelName = name
 
     def _getFeatureVector(self,data = []):
         data = [data]
@@ -77,21 +78,24 @@ class Polynomial_Regressor:
             return round(num, sig_figs - int(np.floor(np.log10(abs(num)))) - 1)
 
     def save(self, path=None):
-        if path is None:
-            path = os.getcwd()
-        if not os.path.isdir(path):
-            print(f"The directory {path} does not exist.")
-            return
+        if self.modelName != "":
+            if path is None:
+                path = os.getcwd()
+            if not os.path.isdir(path):
+                print(f"The directory {path} does not exist.")
+                return
 
-        file_path = os.path.join(path, self.name + ".prf")
+            file_path = os.path.join(path, self.modelName + ".prf")
 
-        w_str = str(self.w)
-        try:
-            with open(file_path, 'w') as f:
-                f.write(w_str)
-        except IOError as e:
-            print(f"An error occurred: {e}")
-    
+            w_str = str(self.w)
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(w_str)
+            except IOError as e:
+                print(f"An error occurred: {e}")
+        else:
+            print()
+            raise Exception("Save Failed: Model name required in order to export weights")
     
 
         
