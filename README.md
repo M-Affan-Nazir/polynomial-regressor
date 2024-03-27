@@ -8,4 +8,4 @@ Instructions:
     * "trainingData" = tuple: first element as feature matrix and second element as target vector
     * "validationData" = tuple: first element as feature       matrix, and second element as target vector
     * "batchSize"
-- .save() -> accepts path to save model weights (requires name of the model to be set)
+- .save() -> accepts path to save model weights (requires name of the model to be saved)
